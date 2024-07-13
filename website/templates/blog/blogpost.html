@@ -1,0 +1,228 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block header %}
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a href="{% url 'sections' %}">DevFolio</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto " href="{% url 'sections' %}">Home</a></li>
+        <li><a class="nav-link scrollto " href="#blog">Blog</a></li>
+        <li><a class="nav-link scrollto " href="#comments">Comments</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+{% endblock %}
+
+{% block hero %}
+<div class="hero hero-single route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
+  <div class="overlay-mf"></div>
+  <div class="hero-content display-table">
+    <div class="table-cell">
+      <div class="container">
+        <h2 class="hero-title mb-4">Blog Details</h2>
+        <ol class="breadcrumb d-flex justify-content-center">
+          <li class="breadcrumb-item">
+            <a href="#">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="#">Library</a>
+          </li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block sections %}
+<main id="main">
+  <!-- ======= Blog Single Section ======= -->
+  <section class="blog-wrapper sect-pt4" id="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="post-box">
+            <div class="post-thumb">
+              <img src="{{ blog_post.cover_image }}" class="img-fluid" alt="">
+            </div>
+            <div class="post-meta">
+              <h1 class="article-title">{{ blog_post.title }}</h1>
+              <ul>
+                <li>
+                  <span class="bi bi-person"></span>
+                  <a href="#">{{ blog_post.author_name }}</a>
+                </li>
+                <li>
+                  <span class="bi bi-tag"></span>
+                  <a href="#">{{ blog_post.category }}</a>
+                </li>
+                <li>
+                  <span class="bi bi-chat-left-text"></span>
+                  <a href="#"> {{ comments|length }} </a>
+                </li>
+              </ul>
+            </div>
+            <div class="article-content">
+              {{ blog_post.content|safe }}
+            </div>
+          </div>
+          <div class="box-comments" id="comments">
+            <div class="title-box-2">
+              <h4 class="title-comments title-left">Comments ( {{ comments|length }} )</h4>
+            </div>
+            <ul class="list-comments">
+              {% for comment in comments %}
+              <li>
+                <div class="comment-avatar">
+                  <img src="assets/img/testimonial-4.jpg" alt="">
+                </div>
+                <div class="comment-details">
+                  <h4 class="comment-author">{{ comment.author_name }}</h4>
+                  <span>{{ comment.created_at}}</span>
+                  <p>{{ comment.comment }}</p>
+                  <a href="3">Reply</a>
+                </div>
+              </li>
+              <!-- <li class="comment-children">
+                  <div class="comment-avatar">
+                    <img src="assets/img/testimonial-2.jpg" alt="">
+                  </div>
+                  <div class="comment-details">
+                    <h4 class="comment-author">Oliver Colmenares</h4>
+                    <span>18 Sep 2017</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
+                      ipsam temporibus maiores
+                      quae.
+                    </p>
+                    <a href="3">Reply</a>
+                  </div>
+                </li> -->
+              {% empty %}
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="form-comments">
+            <div class="title-box-2">
+              <h3 class="title-left">
+                Leave a Reply
+              </h3>
+            </div>
+            <form class="form-mf" action="{% url 'blog-post' blog_id %}" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <input name="name" type="text" class="form-control input-mf" id="inputName" placeholder="Name *"
+                      required>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <input name="email" type="email" class="form-control input-mf" id="inputEmail" placeholder="Email *"
+                      required>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <input name="image" type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="comment"
+                      cols="45" rows="8" required></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="widget-sidebar sidebar-search">
+            <h5 class="sidebar-title">Search</h5>
+            <div class="sidebar-content">
+              <form>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-search" type="button">
+                      <span class="bi bi-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="widget-sidebar">
+            <h5 class="sidebar-title">Recent Post</h5>
+            <div class="sidebar-content">
+              <ul class="list-sidebar">
+                {% for post in recent_posts %}
+                <li>
+                  <a href="#">{{ post.title }}</a>
+                </li>
+                {% empty %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="widget-sidebar">
+            <h5 class="sidebar-title">Archives</h5>
+            <div class="sidebar-content">
+              <ul class="list-sidebar">
+                <li>
+                  <a href="#">September, 2017.</a>
+                </li>
+                <li>
+                  <a href="#">April, 2017.</a>
+                </li>
+                <li>
+                  <a href="#">Nam quo autem exercitationem.</a>
+                </li>
+                <li>
+                  <a href="#">Atque placeat maiores nam quo autem</a>
+                </li>
+                <li>
+                  <a href="#">Nam quo autem exercitationem.</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="widget-sidebar widget-tags">
+            <h5 class="sidebar-title">Tags</h5>
+            <div class="sidebar-content">
+              <ul>
+                {% for tag in tags %}
+                <li>
+                  <a href="#">{{ tag }}</a>
+                </li>
+                {% empty %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Blog Single Section -->
+
+</main><!-- End #main -->
+
+{% endblock %}
