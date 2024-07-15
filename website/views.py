@@ -19,7 +19,7 @@ def index(request):
         if subject and message and from_email and name:
             full_message = f"Message from {name} ({from_email}):\n\n{message}"
             try:
-                send_mail(subject, full_message, from_email, ['mulwandamakasa@gmail.com'])
+                send_mail(subject, full_message, from_email, [f'{owner.email}'])
                 return HttpResponse('Email sent successfully')
             except Exception as e:
                 return HttpResponse(f'Error sending email: {e}')
