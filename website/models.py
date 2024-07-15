@@ -9,6 +9,7 @@ class Owner(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=12)
     profile_image = models.ImageField(upload_to=f'{IMAGE_URL}profile_images/')
+    hero_image = models.ImageField(upload_to=f"{IMAGE_URL}profile_images/bg")
     bio = models.TextField()
     address = models.CharField(max_length=64)
     facebook = models.URLField()
@@ -16,6 +17,7 @@ class Owner(models.Model):
     instagram = models.URLField()
     linkedin = models.URLField()
     final_remarks = models.TextField()
+    title = models.CharField(max_length=64)
 
     def __str__(self):
         return self.name
@@ -62,7 +64,6 @@ class Counter(models.Model):
     def __str__(self):
         return self.title
  
-
 class Testimonial(models.Model):
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='testimonials')
     auther_name = models.CharField(max_length=100)
@@ -74,6 +75,7 @@ class Testimonial(models.Model):
 
 
  ########################################BLOG###############################################################   
+
 class Blog(models.Model):
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='blog_ads')
     title = models.CharField(max_length=100)
@@ -113,8 +115,6 @@ class BlogComment(models.Model):
     
 ########################################## PROJECT ##################################################################
 class ProjectDetails(models.Model):
-    #todo: make this be able to get a lot of photos and not just one
-    gallery = models.ImageField(upload_to=f"{IMAGE_URL}projects/gallery/")
     category = models.CharField(max_length=64)
     client = models.CharField(max_length=100)
     project_date = models.DateField()
@@ -123,7 +123,14 @@ class ProjectDetails(models.Model):
     description = models.TextField()
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='portfolio_ads')
     cover_image = models.ImageField(upload_to=f"{IMAGE_URL}projects/covers/")
+    date = models.DateField(auto_now_add=True)
     
     def __str__(self):
         return self.title
 
+class Gallery(models.Model):
+    gallery = models.ImageField(upload_to=f"{IMAGE_URL}projects/gallery/")
+    owner = models.ForeignKey(ProjectDetails, on_delete=models.CASCADE, related_name='gallery')
+
+    def __str__(self):
+        return self.gallery.name

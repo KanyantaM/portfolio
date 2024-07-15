@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, BlogComment, Owner, ProjectDetails, Skill, Service, Counter, Tag, Testimonial
+from .models import Blog, BlogComment, Gallery, Owner, ProjectDetails, Skill, Service, Counter, Tag, Testimonial
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('title', 'owner', 'icon')
@@ -21,3 +21,4 @@ admin.site.register(Tag)
 
 ########### PORTFOLIO
 admin.site.register(ProjectDetails)
+admin.site.register(Gallery)

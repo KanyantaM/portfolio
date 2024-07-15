@@ -46,7 +46,7 @@
 {% endblock %}
 
 {% block hero%}
-<div class="hero hero-single route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
+<div class="hero hero-single route bg-image" style="background-image: url({% static 'img/overlay-bg.jpg' %})">
     <div class="overlay-mf"></div>
     <div class="hero-content display-table">
         <div class="table-cell">
@@ -77,9 +77,9 @@
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center">
-                            {% for image in gallery %}
+                            {% for image in project.gallery.all %}
                             <div class="swiper-slide">
-                                <img src="{{ image }}" alt="">
+                                <img src="{{ image.url }}" alt="" >
                             </div>
                             {% endfor %}
                         </div>

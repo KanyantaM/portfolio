@@ -144,7 +144,7 @@
                 <div class="work-box">
                     <a href='{{ portfolioAd.cover_image }}' data-gallery="portfolioGallery" class="portfolio-lightbox">
                         <div class="work-img">
-                            <img src="{{ portfolioAd.cover_image }}" alt="" class="img-fluid">
+                            <img src="{{ portfolioAd.cover_image.url }}" alt="" class="img-fluid">
                         </div>
                     </a>
                     <div class="work-content">
@@ -158,7 +158,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="w-like">
-                                    <a href=""> <span class="bi bi-plus-circle"></span></a>
+                                    <a href="{% url 'project-detail' portfolioAd.id %}"> <span class="bi bi-plus-circle"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                 <a href="{% url 'blog-post' blogAd.id %}"></a>
                 <div class="card card-blog">
                     <div class="card-img">
-                        <img src="{{ blogAd.cover_image }}"
+                        <img src="{{ blogAd.cover_image.url }}"
                                 alt="image of blog {{ blogAd.title }}" class="img-fluid">
                     </div>
                     <div class="card-body">
@@ -288,7 +288,8 @@
                                     </h5>
                                 </div>
                                 <div>
-                                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                    <form action="{% url 'sections' %}" method="post" role="form" class="php-email-form">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
                                                 <div class="form-group">

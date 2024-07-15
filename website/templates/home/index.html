@@ -5,7 +5,7 @@
 <header id="header" class="fixed-top">
   <div class="container d-flex align-items-center justify-content-between">
 
-    <h1 class="logo"><a href="index.html">Eng. Makasa</a></h1>
+    <h1 class="logo"><a href="index.html">{{ owner.title }}</a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo"><img src="{% static img/logo.png" alt="" class="img-fluid"></a> -->
 
@@ -44,7 +44,7 @@
 
 <!-- ======= Hero Section ======= -->
 {% block hero %}
-  <div id="hero" class="hero route bg-image" style="background-image: url({% static 'img/hero-bg.jpg' %})">
+  <div id="hero" class="hero route bg-image" style="background-image: url({{ owner.hero_image }})">
       <div class="overlay-itro"></div>
       <div class="hero-content display-table">
           <div class="table-cell">

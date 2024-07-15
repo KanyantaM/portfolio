@@ -1,7 +1,7 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
-
+from django.core.mail import send_mail
 from .models import Blog, BlogComment, Owner, ProjectDetails
 
 
@@ -10,6 +10,21 @@ from .models import Blog, BlogComment, Owner, ProjectDetails
 
 def index(request):
    owner = Owner.objects.first()
+   if request.method == 'POST':
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        from_email = request.POST.get('email')
+        name = request.POST.get('name')
+        
+        if subject and message and from_email and name:
+            full_message = f"Message from {name} ({from_email}):\n\n{message}"
+            try:
+                send_mail(subject, full_message, from_email, ['mulwandamakasa@gmail.com'])
+                return HttpResponse('Email sent successfully')
+            except Exception as e:
+                return HttpResponse(f'Error sending email: {e}')
+        else:
+            return HttpResponse('All fields are required')
    return render(request, "home/sections.html",{
       'owner': owner
    })
@@ -44,11 +59,9 @@ def blogPost(request, blog_id):
 
 def projectDetails(request, project_id):
    project = ProjectDetails.objects.get(pk = project_id)
-   gallery = project.gallery.all()
    return render(request, 'project/portfolio_details.html', {
       'project' : project,
-      'gallery' : gallery,
-   })
+      })
 
 
 # def digReplies(commentParent):
@@ -62,3 +75,5 @@ def projectDetails(request, project_id):
 #    for parent in commentParent:
 #       helperComment(parent)
 #    return rel
+
+#
