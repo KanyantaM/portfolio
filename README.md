@@ -11,16 +11,16 @@ This project is a personal portfolio website built using Django. The UI design i
 ## Screenshots
 
 ### Home Page
-![Home Page](./ss/Screenshot-378.png)
+![Home Page](./ss/Screenshot378.png)
 
 ### About Me Page
-![About Me Page](./ss/Screenshot-379.png)
+![About Me Page](./ss/Screenshot379.png)
 
 ### Services Page
-![Services Page](./ss/Screenshot-380.png)
+![Services Page](./ss/Screenshot380.png)
 
 ### Portfolio Page
-![Portfolio Page](./ss/Screenshot-381.png)
+![Portfolio Page](./ss/Screenshot381.png)
 
 ## Getting Started
 
