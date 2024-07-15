@@ -11,16 +11,16 @@ This project is a personal portfolio website built using Django. The UI design i
 ## Screenshots
 
 ### Home Page
-![Home Page](./path/to/Screenshot-378.png)
+![Home Page](./ss/Screenshot-378.png)
 
 ### About Me Page
-![About Me Page](./path/to/Screenshot-379.png)
+![About Me Page](./ss/Screenshot-379.png)
 
 ### Services Page
-![Services Page](./path/to/Screenshot-380.png)
+![Services Page](./ss/Screenshot-380.png)
 
 ### Portfolio Page
-![Portfolio Page](./path/to/Screenshot-381.png)
+![Portfolio Page](./ss/Screenshot-381.png)
 
 ## Getting Started
 
@@ -35,10 +35,10 @@ This project is a personal portfolio website built using Django. The UI design i
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/django-portfolio-website.git
-   cd django-portfolio-website
-   ```
+```bash
+git clone https://github.com/yourusername/django-portfolio-website.git
+cd django-portfolio-website
+```
 2. Create and activate a virtual environment:
 
 ```bash
@@ -97,11 +97,15 @@ git push origin feature/your-feature-name
 This project is open-source and available under the MIT License.
 
 ## Contact
+
 For any inquiries or feedback, you can reach me at:
 
-Email: kanyanta.1makasa@gmail.com
-Phone: 0761951544
-Twitter: @Its_Kanyanta
-LinkedIn: Kanyanta M. Makasa
-Acknowledgements
-UI design by BootstrapMade
+- **Email:** [kanyanta.1makasa@gmail.com](mailto:kanyanta.1makasa@gmail.com)
+- **Phone:** [0761951544](tel:+260761951544)
+- **Twitter:** [@Its_Kanyanta](https://twitter.com/Its_Kanyanta)
+- **LinkedIn:** [Kanyanta M. Makasa](https://www.linkedin.com/in/kanyanta-makasa)
+
+## Acknowledgements
+
+- UI design by [BootstrapMade](https://bootstrapmade.com/)
+
